@@ -19,6 +19,8 @@ class ViewController: UIViewController {
 
     
         // Do any additional setup after loading the view, typically from a nib.
+        
+        //test
         ref.observeEventType(.Value, withBlock: {
             snapshot in
             self.weatherCondition.text = snapshot.value as? String
