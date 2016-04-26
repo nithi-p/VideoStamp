@@ -8,40 +8,76 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, BarcodeDelegate {
+	
+
 	
 	@IBOutlet var myTextField: UITextField!
 
-    @IBOutlet var myTextLabel: UILabel!
+	@IBOutlet var myTextLabel: UILabel!
+	
     var ref = Firebase(url: "https://videostamp.firebaseio.com/")
+	var newURL = ""
+    var description = ""
 
-    
-    override func viewDidLoad() {
-		
-		super.viewDidLoad()
 
-		
-        ref.observeEventType(.Value, withBlock: {
-            snapshot in
-            self.myTextLabel.text = snapshot.value.objectForKey("12345") as? String
-			print(snapshot.value)
-            
-        })
-        
-    }
-    
-    @IBAction func update(sender: UIButton) {
-
-        let usersRef = ref.childByAppendingPath("12345")
-        usersRef.setValue(myTextField.text)
-  
-    }
-    
     
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+	
+	
+
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		
+		
+		let barcodeViewController: BarcodeViewController = segue.destinationViewController as! BarcodeViewController
+		barcodeViewController.delegate = self
+		
+	}
+	
+	func barcodeReaded(barcode: String) {
+		print(barcode)
+		newURL += barcode
+		myTextLabel.text = newURL
+		print(newURL)
+		//myWebView.loadRequest(NSURLRequest(URL: NSURL(string: newURL)!))
+//		ref.observeEventType(.Value, withBlock: {
+//			snapshot in
+//			self.myTextLabel.text = snapshot.value.objectForKey(self.newURL) as? String
+//			
+//		})
+	}
+	
+	
+	
+	override func viewDidLoad() {
+		
+		super.viewDidLoad()
+		
+		ref.observeEventType(.Value, withBlock: {
+			snapshot in
+			self.myTextLabel.text = snapshot.value.objectForKey(self.newURL) as? String
+			
+		})
+
+		
+	}
+	
+	
+	@IBAction func update(sender: UIButton) {
+		
+		let usersRef = ref.childByAppendingPath(newURL)
+		usersRef.setValue(myTextField.text)
+  
+	}
+	
+	
+	
+	
+	
 
 
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		432F137B1CD01E0200BC0C2E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 432F137A1CD01E0200BC0C2E /* AVFoundation.framework */; };
+		432F137D1CD01EF900BC0C2E /* BarcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432F137C1CD01EF900BC0C2E /* BarcodeViewController.swift */; };
 		62FE6F52863CB4DEDB6E91D1 /* libPods-Prototype1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0900911F9421FBFC06FE444 /* libPods-Prototype1.a */; };
 		91A39C981CC6B5DF0027314F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A39C971CC6B5DF0027314F /* AppDelegate.swift */; };
 		91A39C9A1CC6B5DF0027314F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A39C991CC6B5DF0027314F /* ViewController.swift */; };
@@ -17,6 +19,8 @@
 
 /* Begin PBXFileReference section */
 		1FD09E6AA64CDCF00A2BEE7B /* Pods-Prototype1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prototype1.release.xcconfig"; path = "Pods/Target Support Files/Pods-Prototype1/Pods-Prototype1.release.xcconfig"; sourceTree = "<group>"; };
+		432F137A1CD01E0200BC0C2E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		432F137C1CD01EF900BC0C2E /* BarcodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeViewController.swift; sourceTree = "<group>"; };
 		91A39C941CC6B5DF0027314F /* Prototype1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prototype1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A39C971CC6B5DF0027314F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91A39C991CC6B5DF0027314F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -34,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				432F137B1CD01E0200BC0C2E /* AVFoundation.framework in Frameworks */,
 				62FE6F52863CB4DEDB6E91D1 /* libPods-Prototype1.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,6 +70,7 @@
 				91A39C971CC6B5DF0027314F /* AppDelegate.swift */,
 				91A39C991CC6B5DF0027314F /* ViewController.swift */,
 				91A39C9B1CC6B5DF0027314F /* Main.storyboard */,
+				432F137C1CD01EF900BC0C2E /* BarcodeViewController.swift */,
 				91A39C9E1CC6B5DF0027314F /* Assets.xcassets */,
 				91A39CA01CC6B5DF0027314F /* LaunchScreen.storyboard */,
 				91A39CA31CC6B5DF0027314F /* Info.plist */,
@@ -85,6 +91,7 @@
 		F79B665355FA6AF133B71D3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				432F137A1CD01E0200BC0C2E /* AVFoundation.framework */,
 				D0900911F9421FBFC06FE444 /* libPods-Prototype1.a */,
 			);
 			name = Frameworks;
@@ -214,6 +221,7 @@
 			files = (
 				91A39C9A1CC6B5DF0027314F /* ViewController.swift in Sources */,
 				91A39C981CC6B5DF0027314F /* AppDelegate.swift in Sources */,
+				432F137D1CD01EF900BC0C2E /* BarcodeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
