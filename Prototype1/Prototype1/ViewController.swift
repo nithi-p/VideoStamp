@@ -11,14 +11,15 @@ import UIKit
 class ViewController: UIViewController, BarcodeDelegate {
 	
 
+	@IBOutlet var myTextStatus: UILabel!
 	
 	@IBOutlet var myTextField: UITextField!
 
 	@IBOutlet var myTextLabel: UILabel!
 	
     var ref = Firebase(url: "https://videostamp.firebaseio.com/")
-	var newURL = ""
-    var description = ""
+	var theCode = "Empty"
+    var theText = "-"
 
 
     
@@ -27,11 +28,17 @@ class ViewController: UIViewController, BarcodeDelegate {
         super.didReceiveMemoryWarning()
     }
 	
+	func setTimeout(delay:NSTimeInterval, block:()->Void) -> NSTimer {
+		return NSTimer.scheduledTimerWithTimeInterval(delay, target: NSBlockOperation(block: block), selector: "main", userInfo: nil, repeats: false)
+	}
+ 
+	func setInterval(interval:NSTimeInterval, block:()->Void) -> NSTimer {
+		return NSTimer.scheduledTimerWithTimeInterval(interval, target: NSBlockOperation(block: block), selector: "main", userInfo: nil, repeats: true)
+	}
 	
 
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		
 		
 		let barcodeViewController: BarcodeViewController = segue.destinationViewController as! BarcodeViewController
 		barcodeViewController.delegate = self
@@ -40,9 +47,19 @@ class ViewController: UIViewController, BarcodeDelegate {
 	
 	func barcodeReaded(barcode: String) {
 		print(barcode)
-		newURL += barcode
-		myTextLabel.text = newURL
-		print(newURL)
+		theCode = barcode
+		myTextLabel.text = theCode
+		
+		ref.observeEventType(.Value, withBlock: {
+			snapshot in
+			self.myTextField.text = snapshot.value.objectForKey(self.theCode) as? String
+			
+		})
+		
+		myTextStatus.text = ""
+		
+		
+		
 		//myWebView.loadRequest(NSURLRequest(URL: NSURL(string: newURL)!))
 //		ref.observeEventType(.Value, withBlock: {
 //			snapshot in
@@ -59,18 +76,25 @@ class ViewController: UIViewController, BarcodeDelegate {
 		
 		ref.observeEventType(.Value, withBlock: {
 			snapshot in
-			self.myTextLabel.text = snapshot.value.objectForKey(self.newURL) as? String
+			self.myTextField.text = snapshot.value.objectForKey(self.theCode) as? String
 			
 		})
 
-		
+		myTextStatus.text = ""
 	}
 	
 	
 	@IBAction func update(sender: UIButton) {
 		
-		let usersRef = ref.childByAppendingPath(newURL)
+		let usersRef = ref.childByAppendingPath(theCode)
 		usersRef.setValue(myTextField.text)
+		myTextStatus.text = "Posted!"
+		
+		_ = setTimeout(1, block: { () -> Void in
+			self.myTextStatus.text = ""
+		})
+		
+		
   
 	}
 	
