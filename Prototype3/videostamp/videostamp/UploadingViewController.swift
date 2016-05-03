@@ -5,12 +5,15 @@
 //  Created by Yuchi on 28/4/16.
 //  Copyright © 2016 Yuchi. All rights reserved.
 //
+//  sited the AWSS3 file transfer part from https://github.com/awslabs/aws-sdk-ios-samples/tree/master/S3TransferUtility-Sample/Swift/
+//  sited video display part from StackoverFlow http://stackoverflow.com/questions/25034497/playing-a-video-file-from-a-server-in-swift
+//  setting up the awss3 server part http://docs.aws.amazon.com/mobile/sdkforios/developerguide/setup.html
+//
+
 
 import UIKit
 import AVKit
 import AVFoundation
-
-
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -67,9 +70,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         playerController.view.frame = self.view.frame
         
         player.play()
-
     }
-    
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
@@ -79,7 +80,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             let fileName = NSProcessInfo.processInfo().globallyUniqueString.stringByAppendingString(".png")
             let fileURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("upload").URLByAppendingPathComponent(fileName)
             let filePath = fileURL.path!
-            
+//            print(fileName)
             let imageData = UIImagePNGRepresentation(pickedImage)
             imageData!.writeToFile(filePath, atomically: true)
             
@@ -99,8 +100,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             imageView.image = pickedImage
             
         }
-        
     }
+    
     
     func upload(uploadRequest: AWSS3TransferManagerUploadRequest) {
         let transferManager = AWSS3TransferManager.defaultS3TransferManager()
@@ -147,9 +148,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
 
-
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
