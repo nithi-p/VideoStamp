@@ -24,12 +24,12 @@ class ViewController: UIViewController, BarcodeDelegate {
 
     
 
+	// THIS IS FROM http://peatiscoding.me/geek-stuff/javascript-settimeout-in-swift-2-0/
 	
 	func setTimeout(delay:NSTimeInterval, block:()->Void) -> NSTimer {
 		return NSTimer.scheduledTimerWithTimeInterval(delay, target: NSBlockOperation(block: block), selector: "main", userInfo: nil, repeats: false)
 	}
- 
-
+    ///////////////////////////////////////////////////////////////////////
 	
 
 	

@@ -24,17 +24,8 @@ class ViewController: UIViewController, BarcodeDelegate {
 
     
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 	
-	func setTimeout(delay:NSTimeInterval, block:()->Void) -> NSTimer {
-		return NSTimer.scheduledTimerWithTimeInterval(delay, target: NSBlockOperation(block: block), selector: "main", userInfo: nil, repeats: false)
-	}
- 
-	func setInterval(interval:NSTimeInterval, block:()->Void) -> NSTimer {
-		return NSTimer.scheduledTimerWithTimeInterval(interval, target: NSBlockOperation(block: block), selector: "main", userInfo: nil, repeats: true)
-	}
+
 	
 
 	
@@ -82,6 +73,13 @@ class ViewController: UIViewController, BarcodeDelegate {
 
 		myTextStatus.text = ""
 	}
+	
+	
+	func setTimeout(delay:NSTimeInterval, block:()->Void) -> NSTimer {
+		return NSTimer.scheduledTimerWithTimeInterval(delay, target: NSBlockOperation(block: block), selector: "main", userInfo: nil, repeats: false)
+	}
+ 
+
 	
 	
 	@IBAction func update(sender: UIButton) {
